@@ -1,0 +1,52 @@
+#book,#author
+{
+	font-family:"Microsoft YaHei", Arial, Helvetica, sans-serif;
+	border-collapse:collapse;
+}
+
+#book td,#author td
+{
+	font-size:16px;
+	border:1px solid white;
+	padding:4px 10px 3px 8px;
+	color:white;
+	width:200px;
+}
+div#book,div#author
+{
+	padding:15px 10px 15px 10px;
+	display: block;
+	background-color:rgb(51,122,183);
+	height:130px;
+	width:500px;
+}
+
+button
+{
+	margin:0px;
+	padding:10px 10px 10px 10px;
+	text-align:center;
+	border:1px solid transparent;
+	font-size:18px;
+	color:#ffffff;
+	background-color:rgb(96,194,232);
+	position:relative;
+	left:-128px;
+	width:130px;
+}
+
+p
+{
+	font-family:"Microsoft YaHei", Arial, Helvetica, sans-serif;
+	font-size:25px;
+	padding-top:15px;
+	padding-bottom:10px;
+	color:rgb(51,122,183);
+}
+
+#input_search
+{
+	position:relative;
+	left:50px;
+	top: 10px;
+}

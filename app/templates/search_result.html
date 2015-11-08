@@ -1,0 +1,80 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/css/first_css.css" />
+	<style type="text/css">
+		p
+		{
+			font-family:"Microsoft YaHei", Arial, Helvetica, sans-serif;
+			font-size:25px;
+			padding-top:15px;
+			padding-bottom:10px;
+			color:rgb(51,122,183);
+		}
+	</style>
+	<script type="text/javascript">
+		function changeColor1(element)
+		{
+			element.style.background='green';
+		}
+		function changeColor2(element)
+		{
+			element.style.background='#98bf21';
+		}
+		function validate_required(field,alerttxt)
+		{
+			with (field)
+			  {
+			  if (value==null||value=="")
+			    {alert(alerttxt);return false}
+			  else {return true}
+			  }
+		}
+		function validate_form(thisform)
+		{
+			with (thisform)
+			  {
+			  if (validate_required(input,"输入不能为空!")==false)
+			    {input.focus();return false}
+			  }
+		}
+	</script>
+</head>
+<body>
+	<div id='container' align='center'>
+	<div id='header'>
+		<h1>图书管理系统</h1>
+	</div>
+
+	<div id='menu'>
+	<ul>
+		<li><a class='first' href="/">所有图书</a></li>
+		<li><a class='first' href="" style='background:#98bf21'>图书信息</a></li>
+		<li><a class='first' href="/add/">添加图书</a></li>
+		<li><a class='first' href="">修改图书</a></li>
+		<li>
+			<form  action='/search_result/' onsubmit="return validate_form(this)" method='post'>
+			{% csrf_token %}
+			<input type='text' id='input_search' name='input' />
+			<input type='submit' id='input_submit' onmouseover='changeColor1(this)' onmouseout='changeColor2(this)' value='搜索作者'/>
+			</form>
+		</li>
+	</ul>
+	</div>
+
+	<div id='content' style='height:100%'>
+		{% if exit %}
+		<p>搜索{{user_input}}的结果如下:</p>
+		{% for ISBN,bookurl in dic.iteritems %}
+			<a href={{bookurl.1}}>《{{bookurl.0}}》 (ISBN:{{ISBN}})</a>
+			<br><br>
+		{% endfor %}
+		{% else %}
+		<p>搜索{{user_input}}的结果为空!</p>
+		{% endif %}
+	</div>
+
+	<div id="footer">Made By Xuedi</div>
+
+</div>
+</body>
+</html>

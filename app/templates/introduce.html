@@ -1,0 +1,97 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/css/introduce_css.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/first_css.css" />
+	<script>
+		function validate_required(field,alerttxt)
+		{
+			with (field)
+			  {
+			  if (value==null||value=="")
+			    {alert(alerttxt);return false}
+			  else {return true}
+			  }
+		}
+		function validate_form(thisform)
+		{
+			with (thisform)
+			  {
+			  if (validate_required(input,"输入不能为空!")==false)
+			    {input.focus();return false}
+			  }
+		}
+		function chooseDiv(element,arg)
+		{
+			document.getElementById(arg).style.display='';
+			element.style.background='rgb(51,122,183)';
+			if(arg=='book')
+			{
+				document.getElementById('author').style.display='none';
+				document.getElementById('author_btn').style.background='rgb(96,194,232)';
+			}
+			else
+			{
+				document.getElementById('book').style.display='none';
+				document.getElementById('book_btn').style.background='rgb(96,194,232)';
+			}
+		}
+		function changeColor1(element)
+		{
+			element.style.background='green';
+		}
+		function changeColor2(element)
+		{
+			element.style.background='#98bf21';
+		}
+	</script>
+</head>
+<body>
+<div id='container' align='center'>
+	
+	<div id='header'>
+		<h1>图书管理系统</h1>
+	</div>
+
+	<div id='menu'>
+		<ul>
+			<li><a class='first' href="/">所有图书</a></li>
+			<li><a class='first' href="" style='background:#98bf21'>图书信息</a></li>
+			<li><a class='first' href="/add/">添加图书</a></li>
+			<li><a class='first' href="">修改图书</a></li>
+			<li>
+				<form  action='/search_result/' onsubmit="return validate_form(this)" method='post'>
+				{% csrf_token %}
+				<input type='text' id='input_search' name='input' />
+				<input type='submit' id='input_submit' onmouseover='changeColor1(this)' onmouseout='changeColor2(this)' value='搜索作者'/>
+			</form>
+			</li>
+		</ul>
+	</div>
+
+	<div id='content' style='height:100%'>
+		<p>《{{Title}}》</p>
+		<button id='book_btn' onclick="chooseDiv(this,'book')" onmouseover="mover(this)" onmouseout="mout(this)" style='background:rgb(51,122,183);'>图书信息</button>
+		<button id='author_btn' onclick="chooseDiv(this,'author')" onmouseover="mover(this)" onmouseout="mout(this)">作者信息</button>
+		<div id='book'>
+			<table align='center'>
+				<tr><td style='width:150px;'>ISBN</td><td>{{ISBN}}</td></tr>
+				<tr><td style='width:150px;'>出版社</td><td>{{Publisher}}</td></tr>
+				<tr><td style='width:150px;'>出版日期</td><td>{{PublishDate}}</td></tr>
+				<tr><td style='width:150px;'>价格</td><td>{{Price}}元</td></tr>
+			</table>
+		</div>
+
+		<div id='author' style='display:none;'>
+			<table align='center'>
+				<tr><td style='width:150px;'>作者</td><td>{{Author}}</td></tr>
+				<tr><td style='width:150px;'>年龄</td><td>{{Age}}</td></tr>
+				<tr><td style='width:150px;'>国籍</td><td>{{Country}}</td></tr>
+			</table>
+		</div>
+
+	</div>
+
+	<div id="footer">Made By Xuedi</div>
+</div>
+</body>
+</html>

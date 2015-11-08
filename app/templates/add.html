@@ -1,0 +1,89 @@
+<html>
+	
+<head>
+    <script type="text/javascript" src="/static/js/add_js.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/first_css.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/add_css.css" />
+</head>
+<body>
+	<div id='container' align='center'>
+	<div id='header'>
+		<h1>图书管理系统</h1>
+	</div>
+
+	<div id='menu'>
+	<ul>
+		<li><a class='first' href="/">所有图书</a></li>
+		<li><a class='first' href="">图书信息</a></li>
+		<li><a class='first' href="" style='background:#98bf21'>添加图书</a></li>
+		<li><a class='first' href="">修改图书</a></li>
+		<li>
+			<form  action='/search_result/' onsubmit="return validate_form(this)" method='post'>
+			{% csrf_token %}
+			<input type='text' id='input_search' name='input' />
+			<input type='submit' id='input_submit' onmouseover='up_changeColor1(this)' onmouseout='up_changeColor2(this)' value='搜索作者'/>
+			</form>
+		</li>
+	</ul>
+	</div>
+
+	<div id='content' style='height:100%'>
+		
+	    <div id='panel'>
+	    <div id='up_panel'><p>请在此处输入图书信息</p></div>
+	    <div id='down_panel'>
+		<form action='' onsubmit="return validate_form2(this)" method='post'>
+			{% csrf_token %}
+	        <br><br>
+	        <label style='position:relative;left:50px'>书名</label>
+	        <input type='text' class='mytxt' onFocus="onFocusFun(this,'one')" onblur="onblurFun(this,'one')" name='book_name' style='left:63px'>
+	        <label id='one' style="color:red;left:57px;"></label><br>
+
+	        <br>
+	        <label style='position:relative;left:45px'>ISNB</label>
+	        <input type='text' class='mytxt' onFocus="onFocusFun(this,'two')" onblur="onblurFun(this,'two')" name='book_ISBN' style='left:58px'>
+	        <label id='two' style="color:red;left:53px;"></label><br>
+
+	        <br>
+			<label style='position:relative;left:50px'>作者</label><input type='text' class='mytxt' onFocus="onFocusFun(this,'three')" onblur="onblurFun(this,'three')" name='author_name' style='left:67px'>
+			<label id='three' style="color:red;left:62px;"></label><br>
+			
+	        <div id='mydiv' style='display:none;'>
+	        	<br>
+				<label style='position:relative;left:20px'>作者年龄</label><input type='text' class='mytxt' onFocus="onFocusFun(this,'four')" onblur="onblurFun(this,'four')" name='author_age' style='left:35px'>
+				<label id='four' style="color:red;left:30px;"></label><br>
+				
+				<br>
+				<label style='position:relative;left:20px'>作者国籍</label><input type='text' class='mytxt' onFocus="onFocusFun(this,'five')" onblur="onblurFun(this,'five')" name='author_country' style='left:35px'>
+				<label id='five' style="color:red;left:30px;"></label><br>
+	        </div>
+			
+			<br>
+	        <label style='position:relative;left:35px'>出版社</label><input type='text' class='mytxt' onFocus="onFocusFun(this,'six')" onblur="onblurFun(this,'six')" name='publisher' style='left:50px'>
+			<label id='six' style="color:red;left:46px;"></label><br>
+			
+			<br>
+			<label style='position:relative;left:20px'>出版日期</label><input id='seven1' class='mytxt' type='text' onFocus="onFocusFun(this,'seven')" style='width:70px;left:35px' onblur="onblurFun(this,'seven')" name='publish_year'><label style='position:relative;left:33px;'>年</label>
+			<input type='text' id='seven2' class='mytxt' onFocus="onFocusFun(this,'seven')" onblur="onblurFun(this,'seven')" style='width:35px;left:70px;' name='publish_month'><label style='position:relative;left:70px;'>月</label>
+			<input type='text' id='seven3' class='mytxt' onFocus="onFocusFun(this,'seven')" onblur="onblurFun(this,'seven')" style='width:35px;left:100px;' name='publish_day'><label style='position:relative;left:100px;'>日</label>
+			<label id='seven' style="color:red;left:120px;"></label><br>
+
+			<br>
+			<label style='position:relative;left:50px'>价格</label><input type='text' class='mytxt' onFocus="onFocusFun(this,'eight')" onblur="onblurFun(this,'eight')" name='price' style='left:67px'>
+			<label id='eight' style="color:red;left:60px;"></label><br>
+			
+			<br><br>
+			<div><input type='submit' id='submit_button' onmouseover='down_changeColor1(this)' onmouseout='down_changeColor2(this)' value='保存'></div>
+		<form/>
+		</div>
+	    </div>
+
+	</div>
+
+	<div id="footer">Made By Xuedi</div>
+
+</div>
+</body>
+</html>
